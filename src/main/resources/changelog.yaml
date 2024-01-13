@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: src/main/resources/db/migration/V1__create_db.sql
+      relativeToChangelogFile: true
+  - include:
+      file: src/main/resources/db/migration/V2__populate_db.sql
+      relativeToChangelogFile: true

@@ -4,39 +4,39 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class PersonDao {
-    private SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
+public class PlanetDao {
+    private final SessionFactory sessionFactory = HibernateUtil.getInstance().getSessionFactory();
 
     // Create
-    public void save(Person person) {
+    public void save(Planet planet) {
         try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
-            session.save(person);
+            session.persist(planet);
             tx.commit();
         }
     }
 
     // Read
-    public Person findById(Long id) {
+    public Planet findById(String id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(Person.class, id);
+            return session.get(Planet.class, id);
         }
     }
 
     // Update
-    public void update(Person person) {
+    public void update(Planet planet) {
         try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
-            session.update(person);
+            session.merge(planet);
             tx.commit();
         }
     }
 
     // Delete
-    public void delete(Person person) {
+    public void delete(Planet planet) {
         try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
-            session.delete(person);
+            session.remove(planet);
             tx.commit();
         }
     }
